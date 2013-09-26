@@ -1,0 +1,300 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/typography/vertical_rhythm";
+@import "compass/layout/grid-background";
+@import "compass/css3";
+@import "compass/css3/shared";
+@import "compass/utilities";
+@import "compass/layout/stretching";
+// Vertical Rhythm ----------------------------------------------------------
+$base-font-size: 14px;
+$base-line-height: 20px;
+$default-rhythm-border-style: solid;
+$ie-font-ratio: 14px / 100%;
+$base-rhythm-unit: $base-line-height / $base-font-size * 1em;
+$base-leader: ($base-line-height - $base-font-size) * 1em / $base-font-size;
+$base-half-leader: $base-leader / 2;
+
+@include establish-baseline;
+
+@import "bootstrap";
+
+// Color ----------------------------------------------------------------------
+$dark-grey: #58595b;
+$light-grey: #bcbec0;
+$blue: darken(#00AEFF,25);
+
+// Box Sizing ------------------------------------------------------------------
+*, *:before, *:after {
+    @include box-sizing(border-box);
+}
+// Typography ----------------------------------------------------------------------
+
+body {
+  font-family: Helvetica,Arial, sans-serif;
+  color: $dark-grey;
+  overflow-x: hidden;
+  width: 100%;
+  padding-bottom: 30px;
+  background: transparent url("../images/brushed.png") repeat;
+}
+
+
+p {
+  @include trailer(1);
+  @include adjust-font-size-to(16px);
+  @include adjust-leading-to(1.1);
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+img {
+  width: auto !important; /*override the width below*/
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  text-align:center;
+  margin: 0 auto;
+}
+
+a.imagewrap{
+  @include clearfix;
+  display: block;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.last{
+  float: right;
+}
+
+ul {
+  font-family: Helvetica,Arial,Sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $dark-grey;
+  font-weight: normal;
+
+}
+
+h1 {
+  text-transform: uppercase;
+  font-family: 'helvetica',sans-serif;
+  @include adjust-font-size-to(22px);
+  @include trailer(0.4);
+  letter-spacing: .05em;
+  color: $blue;
+}
+
+h2 {
+  font-family: 'helvetica',sans-serif;
+  @include adjust-font-size-to(18px);
+  @include adjust-leading-to(1);
+  color: darken($light-grey,20);
+  border-bottom: 1px solid darken($light-grey,20);
+}
+
+h3 {
+  font-family:'helvetica',sans-serif;
+  @include adjust-font-size-to(17px);
+}
+
+h4 {
+  font-family: Helvetica,Arial,Sans-serif;
+  @include adjust-font-size-to(17px);
+}
+
+/* Forms -----------------------------------------*/
+input[type=text],
+input[type=email],
+input[type=search],
+textarea {
+    @include box-shadow(
+      inset 1px 1px 8px  rgba(0,0,0,0.1));
+    padding: 8px;
+    background: rgba(255,255,255,0.5);
+    margin: 0 0 10px 0;
+    border: 2px solid lighten($light-grey,10);
+}
+
+textarea.error,
+input.error{
+  border: 1px solid red;
+}
+
+.errors{
+  color: red;
+}
+
+
+/* Tables ---------------------------------------------*/
+table{
+  overflow: scroll;
+  position: relative;
+  z-index: 4;
+  border-left: 1px solid $light-grey;
+  border-top: 1px solid $light-grey;
+  background: white;
+  @include trailer(1);
+  text-align: left;
+  tr{
+    border-bottom: 1px solid $light-grey;
+  }
+  th{
+    color: darken($dark-grey, 10);
+    font-weight: bold;
+  }
+  th, td{
+    padding: 0 8px;
+    @include padding-leader(.5);
+    @include padding-trailer(.5);
+    text-align: left;
+    border-right: 1px solid $light-grey;
+  }
+}
+/*Container*/
+.container{
+	@include padding-leader(1);
+	@include leader(1);
+	background: #fff;
+	@include clearfix;
+	height: auto;
+}
+/* Header */
+header{
+	@include padding-leader(.5);
+	@include padding-trailer(.5);
+	background: $light-grey;
+	border: 1px solid lighten($light-grey,20);
+	@include trailer(1);
+	padding-left: 16px;
+	padding-right: 16px;
+
+	h1{
+		font-family:georgia,sans-serif;
+		@include adjust-font-size-to(28px);
+		@include trailer(0);
+		@include adjust-leading-to(1);
+		@include leader(0);
+		text-transform: capitalize;
+		border-bottom: 1px solid darken($light-grey,5);
+		@include text-shadow(0 1px 1px $dark-grey);
+		a, a:hover{
+			color:#fff;
+			text-decoration: none;
+		}
+
+
+	}
+	h2{
+		border: none;
+		@include adjust-font-size-to(14px);
+		text-transform: lowercase;
+		@include trailer(0);
+		@include leader(0);
+		text-align: right;
+		@include text-shadow(0 1px 1px lighten($light-grey,15));
+		a, a:hover{
+			color: $dark-grey;
+			text-decoration: none;
+		}
+	}
+}
+/* nav*/
+.span4{
+	background: #fff;
+    border: none;
+	height: 100%;
+}
+.sidebar-nav-fixed {
+	padding-top: 0;
+	@include box-shadow(none);
+    background: transparent;
+    border: none;
+	@include border-radius(0);
+	h4{
+		@include trailer(.5);
+		border-bottom: 1px solid darken($light-grey,10);
+		color: darken($light-grey,10);
+		text-transform: uppercase;
+		@include adjust-font-size-to(12px);
+		@include adjust-leading-to(1);
+	}
+	ul {
+		color: lighten($light-grey,10);
+		list-style-type: disc;
+		@include trailer(1);
+		.current{
+			-webkit-transition: background-color 500ms ease-out .25s;
+    		-moz-transition: background-color 500ms ease-out .25s;
+    		-o-transition: background-color 500ms ease-out .25s;
+    		transition: background-color 500ms ease-out .25s;
+			background: lighten($light-grey,10);
+		}
+	}
+}
+
+/* Content*/
+.content{
+	background: #fff;
+	padding-right: 38px;
+	height: 100%;
+	@include padding-trailer(2);
+	h1{
+		border-bottom: 4px solid $light-grey;
+		@include adjust-font-size-to(24px);
+		@include adjust-leading-to(1);
+		@include leader(0);
+		@include trailer(.1);
+	}
+	.roles{
+		text-align: right;
+
+	}
+	h2{
+		color: darken($light-grey,10);
+		text-transform: uppercase;
+		@include adjust-font-size-to(14px);
+		@include adjust-leading-to(1);
+		border-color: darken($light-grey,10);
+	}
+	h3{
+		display: inline;
+		@include adjust-font-size-to(12px);
+		text-transform: capitalize;
+		color: lighten($dark-grey,10);
+	}
+	h4{
+		@include trailer(0);
+		@include leader(1);
+		color: $light-grey;
+		@include adjust-leading-to(1);
+		border-bottom: 1px solid;
+	}
+	ul{
+		@include inline-list;
+		@include adjust-font-size-to(12px);
+		color: lighten($dark-grey,10);
+	}
+	img{
+		border: 1px solid $light-grey;
+		@include box-shadow(0 1px 2px $light-grey);
+	}
+}
+
+/*error*/
+.errorPage{
+	.span12{
+		padding: 20px;
+	}
+}
